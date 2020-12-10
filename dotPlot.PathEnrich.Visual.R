@@ -1,6 +1,6 @@
 dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x = "GeneRatio", color = "pvalue",
-                                      showCategory=10, size=NULL, split = NULL,
-                                      font.size=12, title = "Dot plot", orderBy="GeneRatio", decreasing=TRUE){
+                                      showCategory=20, size=NULL, split = NULL,
+                                      font.size=20, title = "", orderBy="GeneRatio", decreasing=TRUE){
   library(enrichplot)
   library(ggplot2)
   library(DOSE)
@@ -31,6 +31,10 @@ dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x =
   
   # Read the data
   df =  fread(enrichmentResultFile) %>% as.data.frame()
+  # library(tidyr)
+  # aa = lapply(df$Pathway.geneSymbol, FUN = function(x){
+  #   strsplit(x, split = "/", fixed = T) %>% length() %>% return()
+  # })
   # df <- dplyr::mutate(df, GeneRatio = eval(parse(text=GeneRatio)))
   
   # print(paste0(df$GeneRatio))
@@ -42,7 +46,7 @@ dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x =
     geom_point() +
     scale_color_continuous(low="red", high="blue", name = color, guide=guide_colorbar(reverse=TRUE)) +
     # scale_color_gradientn(name = color, colors=sig_palette, guide=guide_colorbar(reverse=TRUE)) +
-    ylab(NULL) + ggtitle(title) + theme_dose(font.size) + scale_size(range=c(3, 8))
+    ylab(NULL) + ggtitle(title) + theme_dose(font.size) + theme(legend.text=element_text(size=16)) + scale_size(range=c(3, 8))
   
   # 
   # ggsave(
@@ -57,3 +61,17 @@ dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x =
   
   return(p)
 }
+
+p = dotPlot.PathEnrich.Visual(enrichmentResultFile = "data/pathEnrichResult_KEGG_45_signaling.csv")
+
+p
+
+ggsave(
+  paste0("dotPlot_DE_PathEnrich.pdf"),
+  p,
+  path = "data/" ,
+  device = "pdf",
+  limitsize = F,
+  width = 20,
+  height = 20
+)

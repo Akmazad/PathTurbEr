@@ -71,7 +71,8 @@ fig <- fig %>% add_trace(y = ~MH, name = 'MH', mode = 'lines') %>%
   layout(title = "Optimal STP inference: Bayesian network sampling with MCMC methods",
          paper_bgcolor='rgb(255,255,255)', 
          xaxis = list(title = "Iteration", showline = T, zeroline = T, showgrid = F),
-         yaxis = list (title = "Log Posteriori", showline = T, zeroline = T, showgrid = F))
+         yaxis = list (title = "Log Posteriori", showline = T, zeroline = T, showgrid = F)) %>%
+  config(displayModeBar = F)
 fig
 # draw standardized expression in case study compared to control
 std.dat <- fread("../Project1/Project1/bin/Debug/GSE38376_standardizedOnly.csv") %>% as.data.frame()
@@ -88,7 +89,7 @@ library(pathview)
 pathView.dat = tT$logFC
 names(pathView.dat) = tT$Gene.symbol
 pathview(gene.data = pathView.dat, 
-         pathway.id = "04115",
+         pathway.id = "04350",
          species = "hsa",
          kegg.native = T,
          gene.idtype = "SYMBOL",
