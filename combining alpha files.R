@@ -10,13 +10,13 @@ library(dplyr)
 
 fc.dat = fread("data/GSE38376_DE_genes_limma.csv")
 
-ns.alpha = fread("../Project1/Project1/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_NS.csv") %>% 
+ns.alpha = fread("../PathTurbEr/Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_NS.csv") %>% 
   dplyr::select(c("geneID","alpha_mean")) %>%
   as.data.frame()
-har.alpha = fread("../Project1/Project1/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_HAR.csv") %>% 
+har.alpha = fread("../PathTurbEr/Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_HAR.csv") %>% 
   dplyr::select(c("geneID","alpha_mean")) %>%
   as.data.frame()
-mh.alpha = fread("../Project1/Project1/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_MH.csv") %>% 
+mh.alpha = fread("../PathTurbEr/Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/JAGS_output/TGF-BETA_SIGNALING_PATHWAY_alpha_MH.csv") %>% 
   dplyr::select(c("geneID","alpha_mean")) %>%
   as.data.frame()
 
@@ -37,7 +37,7 @@ all = all %>% dplyr::filter(`From NS sampling` > 0 |
 all$`From NS sampling` = ifelse(all$`From NS sampling` > 0, all$`From NS sampling`, "--")
 all$`From HAR sampling` = ifelse(all$`From HAR sampling` > 0, all$`From HAR sampling`, "--")
 all$`From MH sampling` = ifelse(all$`From MH sampling` > 0, all$`From MH sampling`, "--")
-fwrite(all, file="data/Table1.csv")
+fwrite(all, file="data/Table1_rev.csv")
 
 ns.alpha$shape = ifelse(ns.alpha$alpha_mean > 0, "trianle", "circle")
 har.alpha$shape = ifelse(har.alpha$alpha_mean > 0, "trianle", "circle")
@@ -48,6 +48,6 @@ ns.alpha$logFC = fc.dat[base::match(ns.alpha$geneID, fc.dat$Gene.symbol), "logFC
 har.alpha$logFC = fc.dat[base::match(har.alpha$geneID, fc.dat$Gene.symbol), "logFC"]
 mh.alpha$logFC = fc.dat[base::match(mh.alpha$geneID, fc.dat$Gene.symbol), "logFC"]
 
-fwrite(ns.alpha, file = "data/NS_cyto_node_attribute.csv")
-fwrite(har.alpha, file = "data/HAR_cyto_node_attribute.csv")
-fwrite(mh.alpha, file = "data/MH_cyto_node_attribute.csv")
+fwrite(ns.alpha, file = "data/NS_cyto_node_attribute_rev.csv")
+fwrite(har.alpha, file = "data/HAR_cyto_node_attribute_rev.csv")
+fwrite(mh.alpha, file = "data/MH_cyto_node_attribute_rev.csv")
