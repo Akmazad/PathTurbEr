@@ -11,6 +11,7 @@ Pathway Perturbation Driver identification
 
 ## Running a demo
 ----
+- show how to run a PathTurbEr with a sample data
 
 # Structure of this repository
 - create a logfile when running
