@@ -51,3 +51,17 @@ mh.alpha$logFC = fc.dat[base::match(mh.alpha$geneID, fc.dat$Gene.symbol), "logFC
 fwrite(ns.alpha, file = "data/NS_cyto_node_attribute_rev.csv")
 fwrite(har.alpha, file = "data/HAR_cyto_node_attribute_rev.csv")
 fwrite(mh.alpha, file = "data/MH_cyto_node_attribute_rev.csv")
+
+# Helper function to display Venn diagram: DataNovia (https://www.datanovia.com/en/blog/venn-diagram-with-r-or-rstudio-a-million-ways/)
+# display_venn <- function(x, ...){
+#   library(VennDiagram)
+#   grid.newpage()
+#   venn_object <- venn.diagram(x, filename = NULL, ...)
+#   grid.draw(venn_object)
+# }
+
+# display_venn(
+#   ,
+#   category.names = c("NS" , "HAR", "MH"),
+#   fill = c("#E69F00", "#56B4E9", "#009E73")
+# )
