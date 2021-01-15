@@ -1,6 +1,6 @@
 #' Title
 #'
-#' @param disease.genes 
+#' @param disease.genes e.g. Breast cancer genes
 #' @param driver.genes 
 #' @param population 
 #' @param p.adjust.methods 
@@ -34,3 +34,8 @@ disease.gene.ORA(disease.genes = fread("data/Breast Cancer Genes [PMID 32101536]
                  driver.genes = har.drivers)
 disease.gene.ORA(disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                  driver.genes = mh.drivers)
+disease.gene.ORA(disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
+                 driver.genes = base::intersect(ns.drivers, har.drivers) %>% base::intersect(mh.drivers))
+
+# can try qplot for better visualization the enrichment test
+# link: https://cran.r-project.org/web/packages/RVenn/vignettes/vignette.html
