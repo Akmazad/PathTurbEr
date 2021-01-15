@@ -69,8 +69,8 @@ Pathway_geneSetEnrichmentAnalysis <- function(givenSet = givenSet, pop.filepath 
 library(dplyr)
 
 source("DE_GSE38376_GEO2R_code.R")
-# top <- DE_analysis()
-top <- tT
+top <- DE_analysis()
+# top <- tT
 top.filt <- subset(top, adj.P.Val<0.00001) %>% 
   dplyr::select(c("Gene.ID", "Gene.symbol","logFC")) %>%
   dplyr::filter(Gene.ID != "" & 

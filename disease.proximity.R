@@ -53,6 +53,8 @@ disease.proximity <- function(net, disease.genes, driver.genes){
 
 library(data.table)
 library(igraph)
+human.ppi <- fread("data/i2d.human.anno.ppi.Genes.csv") %>% as.data.frame() # can look for only the signaling net
+ppiNet <- graph_from_data_frame(human.ppi[,c("symbol1", "symbol2")], directed = F) %>% igraph::simplify()
 
 all = fread("data/Table1_rev.csv")
 
@@ -60,8 +62,6 @@ ns.drivers = all %>% dplyr::filter(`From NS sampling` != '--') %>% dplyr::select
 har.drivers = all %>% dplyr::filter(`From HAR sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
 mh.drivers = all %>% dplyr::filter(`From MH sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
 
-human.ppi <- fread("data/i2d.human.anno.ppi.Genes.csv") %>% as.data.frame() # can look for only the signaling net
-ppiNet <- graph_from_data_frame(human.ppi[,c("symbol1", "symbol2")], directed = F) %>% igraph::simplify()
 
 disease.proximity(net = ppiNet, disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                   driver.genes = ns.drivers)

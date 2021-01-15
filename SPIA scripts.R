@@ -8,11 +8,12 @@
 # are ENTREZ gene IDs. The background set is a vector of all the 
 # genes represented on the platform.
 library(dplyr)
-
+library(SPIA)
+library(data.table)
 source("DE_GSE38376_GEO2R_code.R")
-# top <- DE_analysis()
+top <- DE_analysis()
 top <- tT
-top.filt <- subset(top, adj.P.Val<0.01) %>% 
+top.filt <- subset(top, adj.P.Val<0.00001) %>% 
   dplyr::select(c("Gene.ID","logFC")) %>%
   dplyr::filter(Gene.ID != "" & 
                   !base::grepl("///", Gene.ID, fixed = T) & 
@@ -23,6 +24,8 @@ sig_genes <- top.filt$logFC
 names(sig_genes) <- top.filt$Gene.ID
 
 res <- spia(de=sig_genes, all = top.filt$Gene.ID, plots = T, verbose = T)
+fwrite(res, file="SPIA_res_512_DEGs.csv")
+plotP(res, threshold = 0.05)
 #two-way evidence plot -- doesn't work
 # res$pG = combfunc(res$pNDE, res$pPERT, combine = "norminv")
 # res$pGFdr=p.adjust(res$pG,"fdr")
