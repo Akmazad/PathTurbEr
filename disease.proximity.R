@@ -48,7 +48,7 @@ disease.proximity <- function(net, disease.genes, driver.genes){
   z <- permuteTest(net, t, d, d_td, 1000)
   p <- pnorm(-abs(z))
   
-  return(dAB)
+  return(p)
 }
 
 library(data.table)
@@ -65,9 +65,14 @@ ppiNet <- graph_from_data_frame(human.ppi[,c("symbol1", "symbol2")], directed = 
 
 disease.proximity(net = ppiNet, disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                   driver.genes = ns.drivers)
+# [1] 0.001274818
 disease.proximity(net = ppiNet, disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                   driver.genes = har.drivers)
+# [1] 5.734396e-06
 disease.proximity(net = ppiNet, disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                   driver.genes = mh.drivers)
+# [1] 4.035954e-06
 disease.proximity(net = ppiNet, disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8"),
                   driver.genes = base::intersect(ns.drivers, har.drivers) %>% base::intersect(mh.drivers))
+# [1] 2.769058e-06
+
