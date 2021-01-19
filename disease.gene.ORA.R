@@ -10,11 +10,14 @@
 #'
 #' @examples
 disease.gene.ORA <- function(disease.genes, driver.genes){
+  require(org.Hs.eg.db)
   disease.genes = disease.genes[,1] %>% unlist(use.names = F)
   M = disease.genes %>% length()
   K = driver.genes %>% length()
   n = intersect(disease.genes,driver.genes) %>% length()
-  U = union(disease.genes,driver.genes) %>% length()
+  # N = union(disease.genes,driver.genes) %>% length()
+  N = org.Hs.egSYMBOL %>% as.character() %>% length()
+  
   res = phyper(x, M, N-M, K, lower.tail = FALSE)
   return(res)
 }

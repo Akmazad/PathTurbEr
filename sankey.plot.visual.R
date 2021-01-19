@@ -84,4 +84,6 @@ filename = "data/KEGG_45_SIGNALING.csv"
 
 disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8")
 
-sankey.plot.visual(driver.genes = all.drivers, disease.genes = disease.genes[,1] %>% unlist(use.names = F), pop.filepath = filename)
+sankey.plot.visual(driver.genes = mh.drivers, 
+                   disease.genes = disease.genes[,1] %>% unlist(use.names = F), 
+                   pop.filepath = filename)
