@@ -25,4 +25,4 @@ vennDiagram.DriverGenes.Visual <- function(x){
   return(p)
 }
 
-vennDiagram.DriverGenes.Visual(x = all)[[2]]
+vennDiagram.DriverGenes.Visual(x = all)[[1]]

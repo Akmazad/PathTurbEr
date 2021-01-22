@@ -3,72 +3,84 @@
 #' @param driver.genes 
 #' @param disease.genes 
 #' @param pop.filepath 
+#' @param combined 
+#' @param preambleEdges 
 #'
 #' @return
 #' @export
 #'
 #' @examples
-sankey.plot.visual <- function(driver.genes, disease.genes, pop.filepath){
+sankey.plot.visual <- function(driver.genes, disease.genes, pop.filepath, combined=F, preambleEdges=NA){
   library(networkD3)
-  # require(org.Hs.eg.db)
   require(stringi)
-  # require(AnnotationDbi)
   require(dplyr)
   require(data.table)
-  # require(clusterProfiler)
   
-  
-  num.col = max(count.fields(pop.filepath, sep = "\t", blank.lines.skip = TRUE), na.rm = TRUE)
-  pathway.data = read.table(pop.filepath, sep = "\t", header = FALSE, stringsAsFactors = FALSE, fill = TRUE, col.names = 1:num.col, blank.lines.skip = TRUE, quote = "")
-  # newGO_terms = GO_terms[-which(rowSums(GO_terms != "", na.rm = T)-1 <= 15),]
-  # newGO_terms = newGO_terms[-which(rowSums(newGO_terms != "", na.rm = T)-1 >= 100),]
-  pathway.data = dplyr::select(pathway.data, -2) # throw away the the column with all NA (2nd-Column)
-  
-  # all.GO.terms = newGO_terms
-  row.names(pathway.data) = gsub(")","",lapply(lapply(stri_split_fixed(stri_reverse(pathway.data[,1]),"(",n = 2), FUN = stri_reverse), "[[",1))
+  pathway.data = fread(pop.filepath, header = T) %>% dplyr::select(1,2)
   nTerms = nrow(pathway.data)
   
-  nodes = data.frame(name = c(driver.genes, pathway.data[,1], disease.genes) %>% unique())
+  disease.genes = setdiff(disease.genes, driver.genes)
+  
+  driverNodes = data.frame(name = driver.genes, group = "drivers")
+  pathwayNodes = data.frame(name = pathway.data[,1] %>% 
+                              unlist(use.names = F) %>% 
+                              gsub("_", " ", ., fixed = T) %>% 
+                              gsub(" PATHWAY","",., fixed = T), 
+                            group = "pathways")
+  diseaseNodes = data.frame(name = disease.genes, group = "disease")
+  # nodes = data.frame(name = c(driver.genes, 
+  #                             pathway.data[,1] %>% unlist(use.names = F), 
+  #                             disease.genes) %>% unique())
+  nodes = bind_rows(driverNodes, pathwayNodes, diseaseNodes)
   edges = data.frame(source = c(),
-                     target = c())
+                     target = c(),
+                     group = c())
   links = data.frame(source = c(),
-                     target = c())
+                     target = c(),
+                     group = c())
+  
+  if(combined){
+    if(is.na(preambleEdges)){
+      stop("for combined set, the preamble edge list shouldn't be empty!!")
+    }
+    nodes = data.frame(name = c("NS", "HAR", "MH"), group = "algorithms") %>% bind_rows(.,nodes)
+    edges = preambleEdges
+  }
   
   for (i in 1:nTerms) {
     print(i)
-    path.name = pathway.data[i,1]
-    pathway.genes.symbol = as.character(pathway.data[i,which(pathway.data[i,] != '')])[-1]
+    path.name = pathway.data[i,1] %>% as.character() %>% gsub("_", " ", ., fixed = T) %>% gsub(" PATHWAY","",., fixed = T)
+    pathway.genes.symbol = pathway.data[i,2] %>% as.character() %>% strsplit(.,split = "/",fixed = T) %>% unlist(use.names = F)
     dr.overlap = intersect(pathway.genes.symbol, driver.genes)
     if(length(dr.overlap) > 0){
       source = dr.overlap
       target = path.name
-      edges = rbind(edges, cbind(source, target) %>% as.data.frame()) 
-      
-      # source = base::match(dr.overlap, nodes[,1]) - 1
-      # target = base::match(path.name, nodes[,1]) - 1
-      # links = rbind(links, cbind(source, target) %>% as.data.frame()) 
+      group = "dr_pathway"
+      edges = rbind(edges, cbind(source, target, group) %>% as.data.frame()) 
     }
     dis.overlap = intersect(pathway.genes.symbol, disease.genes)
     if(length(dis.overlap) > 0){
       source = path.name
       target = dis.overlap
-      edges = rbind(edges, cbind(source, target) %>% as.data.frame()) 
-      
-      # source = base::match(path.name, nodes[,1]) - 1
-      # target = base::match(dis.overlap, nodes[,1]) - 1
-      # links = rbind(links, cbind(source, target) %>% as.data.frame()) 
+      group = "pathway_dis"
+      edges = rbind(edges, cbind(source, target, group) %>% as.data.frame()) 
     }
     
   }
   
-  nodes = dplyr::inner_join(nodes, data.frame(name = c(edges[,1] %>% as.character(), edges[,2]  %>% as.character()) %>% unique()), by = "name")
+  nodes = dplyr::inner_join(nodes, data.frame(name = c(edges[,1] %>% as.character(), 
+                                                       edges[,2]  %>% as.character()) %>% unique()
+                                              ), 
+                            by = "name")
   
   links = data.frame(source = base::match(edges[,1] %>% as.character(), nodes[,1]) - 1,
-                     target = base::match(edges[,2] %>% as.character(), nodes[,1]) - 1)
-  
-  sankeyNetwork(Links = links, Nodes = nodes, Source = 'source',
-                Target = 'target', Value = 1, NodeID = 'name',
-                fontSize = 12, nodeWidth = 30)
+                     target = base::match(edges[,2] %>% as.character(), nodes[,1]) - 1,
+                     group = base::match(edges[,3] %>% as.character(), nodes[,1]) - 1)
+ 
+  sankeyNetwork(Links = links, Nodes = nodes, Source = 'source', LinkGroup = 'group', fontFamily = "Helvetica", 
+                Target = 'target', Value = 1, NodeID = 'name', NodeGroup = "group", sinksRight = T,
+                
+                fontSize = 13, nodeWidth = 30, iterations = 0)
 }
 
 library(data.table)
@@ -79,10 +91,21 @@ ns.drivers = all %>% dplyr::filter(`From NS sampling` != '--') %>% dplyr::select
 har.drivers = all %>% dplyr::filter(`From HAR sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
 mh.drivers = all %>% dplyr::filter(`From MH sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
 all.drivers = c(ns.drivers, har.drivers, mh.drivers) %>% unique()
+common.drivers = intersect(ns.drivers, har.drivers) %>% intersect(mh.drivers)
 
-filename = "data/KEGG_45_SIGNALING.csv"
+filename = "data/pathEnrichResult_KEGG_45_signaling_rev.csv"
 
 disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8")
+
+preambleEdges = bind_rows(
+  data.frame(source = "NS", target = ns.drivers, group = "ns_driver"),
+  data.frame(source = "HAR", target = har.drivers, group = "har_driver"),
+  data.frame(source = "MH", target = mh.drivers, group = "mh_driver")
+)
+
+sankey.plot.visual(driver.genes = all.drivers, 
+                   disease.genes = disease.genes[,1] %>% unlist(use.names = F), 
+                   pop.filepath = filename, combined = T, preambleEdges = preambleEdges)
 
 sankey.plot.visual(driver.genes = mh.drivers, 
                    disease.genes = disease.genes[,1] %>% unlist(use.names = F), 

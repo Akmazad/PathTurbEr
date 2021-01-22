@@ -61,7 +61,7 @@ Pathway_geneSetEnrichmentAnalysis <- function(givenSet = givenSet, pop.filepath 
     }
   }
   colnames(info.gene.overrep) = c("Description", "Pathway.geneSymbol","Overlapping.geneSymbol", "Overlapping.geneID", "Count", "GeneRatio", "pvalue", "p.adjust")
-  res <- info.gene.overrep[which(info.gene.overrep$pvalue != Inf),]
+  res <- info.gene.overrep[which(info.gene.overrep$p.adjust < 0.05),] %>% dplyr::arrange(p.adjust)
   fwrite(res, file = outFilePath, sep = ",", col.names = T, quote = "auto")
   # return(res)
 }
@@ -80,5 +80,5 @@ top.filt <- subset(top, adj.P.Val<0.00001) %>%
 
 givenSet = top.filt$Gene.symbol %>% unique()
 filename = "data/KEGG_45_SIGNALING.csv"
-outFilePath = paste0("data/pathEnrichResult_KEGG_45_signaling.csv")
+outFilePath = paste0("data/pathEnrichResult_KEGG_45_signaling_rev.csv")
 Pathway_geneSetEnrichmentAnalysis(givenSet = givenSet, pop.filepath = filename, outFilePath)
