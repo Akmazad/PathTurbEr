@@ -76,6 +76,8 @@ sankey.plot.visual <- function(driver.genes, disease.genes, pop.filepath, combin
   links = data.frame(source = base::match(edges[,1] %>% as.character(), nodes[,1]) - 1,
                      target = base::match(edges[,2] %>% as.character(), nodes[,1]) - 1,
                      group = base::match(edges[,3] %>% as.character(), nodes[,1]) - 1)
+  
+  fwrite(edges, file = "shankey_edge_data.csv")
  
   sankeyNetwork(Links = links, Nodes = nodes, Source = 'source', LinkGroup = 'group', fontFamily = "Helvetica", 
                 Target = 'target', Value = 1, NodeID = 'name', NodeGroup = "group", sinksRight = T,

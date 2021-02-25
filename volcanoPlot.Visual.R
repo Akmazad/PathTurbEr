@@ -20,7 +20,7 @@ volcanoPlot.Visual <- function(fc.dat, title="VolcanoPlot", subtitle="Enhance Pl
                   legendPosition = 'right',
                   legendLabSize = 20,
                   legendIconSize = 4.0,
-                  drawConnectors = TRUE,
+                  drawConnectors = TRUE, 
                   widthConnectors = 1.0,
                   colConnectors = 'black') %>% 
     return()

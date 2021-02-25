@@ -31,6 +31,10 @@ dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x =
   
   # Read the data
   df =  fread(enrichmentResultFile) %>% as.data.frame()
+  df$Description = df$Description %>% 
+    gsub(pattern = "_PATHWAY", replacement = "", fixed = T) %>% 
+    gsub(pattern = "_", replacement = " ", fixed = T)
+    
   # library(tidyr)
   # aa = lapply(df$Pathway.geneSymbol, FUN = function(x){
   #   strsplit(x, split = "/", fixed = T) %>% length() %>% return()
@@ -62,7 +66,7 @@ dotPlot.PathEnrich.Visual <- function(enrichmentResultFile = myEnrichmentDF, x =
   return(p)
 }
 
-p = dotPlot.PathEnrich.Visual(enrichmentResultFile = "data/pathEnrichResult_KEGG_45_signaling.csv")
+p = dotPlot.PathEnrich.Visual(enrichmentResultFile = "data/pathEnrichResult_KEGG_45_signaling_rev.csv")
 
 p
 

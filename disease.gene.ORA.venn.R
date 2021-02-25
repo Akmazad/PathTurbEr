@@ -27,28 +27,28 @@ disease.gene.ORA.venn <- function(disease.genes, driver.genes, title, hyperPvalu
   return(q)
 }
 
-library(data.table)
-library(dplyr)
-
-all = fread("data/Table1_rev.csv")
-
-ns.drivers = all %>% dplyr::filter(`From NS sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
-har.drivers = all %>% dplyr::filter(`From HAR sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
-mh.drivers = all %>% dplyr::filter(`From MH sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
-
-disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8") %>% unlist(use.names = F)
-driver.genes = ns.drivers %>% as.character()
-ns_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "NS", hyperPvalue = "1.42e-19")
-ggsave("data/ns_plot_ORA.pdf", ns_plot)
-
-driver.genes = har.drivers %>% as.character()
-har_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "HAR", hyperPvalue = "1.42e-19")
-ggsave("data/har_plot_ORA.pdf", har_plot)
-
-
-driver.genes = mh.drivers %>% as.character()
-mh_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "MH", hyperPvalue = "6.95e-22")
-ggsave("data/mh_plot_ORA.pdf", mh_plot)
+# library(data.table)
+# library(dplyr)
+# 
+# all = fread("data/Table1_rev.csv")
+# 
+# ns.drivers = all %>% dplyr::filter(`From NS sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
+# har.drivers = all %>% dplyr::filter(`From HAR sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
+# mh.drivers = all %>% dplyr::filter(`From MH sampling` != '--') %>% dplyr::select(geneID) %>% unlist(use.names = F)
+# 
+# disease.genes = fread("data/Breast Cancer Genes [PMID 32101536].txt", header = F, encoding = "UTF-8") %>% unlist(use.names = F)
+# driver.genes = ns.drivers %>% as.character()
+# ns_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "NS", hyperPvalue = "1.42e-19")
+# ggsave("data/ns_plot_ORA.pdf", ns_plot)
+# 
+# driver.genes = har.drivers %>% as.character()
+# har_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "HAR", hyperPvalue = "1.42e-19")
+# ggsave("data/har_plot_ORA.pdf", har_plot)
+# 
+# 
+# driver.genes = mh.drivers %>% as.character()
+# mh_plot <- disease.gene.ORA.venn(disease.genes, driver.genes, title = "MH", hyperPvalue = "6.95e-22")
+# ggsave("data/mh_plot_ORA.pdf", mh_plot)
 
 
 

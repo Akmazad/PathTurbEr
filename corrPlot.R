@@ -52,9 +52,9 @@ library(dplyr)
 library(data.table)
 library(plotly)
 pathway = "TGF-BETA_SIGNALING_PATHWAY"
-NS <- fread(paste0("../Project1/Project1/bin/Debug/BNMCMC output/LogFx_NS_", pathway, ".csv")) %>% as.data.frame()
-HAR <- fread(paste0("../Project1/Project1/bin/Debug/BNMCMC output/LogFx_HAR_", pathway, ".csv")) %>% as.data.frame()
-MH <- fread(paste0("../Project1/Project1/bin/Debug/BNMCMC output/LogFx_MH_", pathway, ".csv")) %>% as.data.frame()
+NS <- fread(paste0("Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/BNMCMC output/LogFx_NS_", pathway, ".csv")) %>% as.data.frame()
+HAR <- fread(paste0("Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/BNMCMC output/LogFx_HAR_", pathway, ".csv")) %>% as.data.frame()
+MH <- fread(paste0("Preprocessing_MCMC_sampling/Preprocessing_MCMC_sampling/bin/Debug/BNMCMC output/LogFx_MH_", pathway, ".csv")) %>% as.data.frame()
 plot.dat = cbind(1:nrow(NS), NS[,1],HAR[,1], MH[,1]) %>% as.data.frame()
 colnames(plot.dat) = c("iteration", "NS", "HAR", "MH")
 
