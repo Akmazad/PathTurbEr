@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -92,45 +92,45 @@ namespace Preprocessing_MCMC_sampling
                 nSamplingIter,
                 gamma_prior_a,
                 gamma_prior_b);       // [0] original matrix, [1] complementary matrix
-            //// -----------
+            // -----------
 
             // -- HAR algorithm (comment out when need to use)
-            //Adaptive_HAR obj_HAR = new Adaptive_HAR(InputSettings, MethodSettings, OutputSettings, pathwayMats[pathway]);
-            //List<String> BNs_HAR = obj_HAR.StartAnalysis();
-            //string bn_HAR = Find_CombinedBN(BNs_HAR);
-            //List<double[,]> bnMats_HAR = getNetworkSfromString(bn_HAR, nNodes);
-            //printNet(bn_HAR, obj_HAR.nodeNameList, pathway, "HAR");
-            //bugsSampling bugs_HAR = new bugsSampling(bnMats_HAR[0], 
-            //    bnMats_HAR[1], 
-            //    nNodes, 
-            //    pathway, 
-            //    obj_HAR.nodeNameList, 
-            //    "HAR",
-            //    nburnIn,
-            //    nSamplingIter,
-            //    gamma_prior_a,
-            //    gamma_prior_b);        // [0] original matrix, [1] complementary matrix
-            //// -----------
+            Adaptive_HAR obj_HAR = new Adaptive_HAR(InputSettings, MethodSettings, OutputSettings, pathwayMats[pathway]);
+            List<String> BNs_HAR = obj_HAR.StartAnalysis();
+            string bn_HAR = Find_CombinedBN(BNs_HAR);
+            List<double[,]> bnMats_HAR = getNetworkSfromString(bn_HAR, nNodes);
+            printNet(bn_HAR, obj_HAR.nodeNameList, pathway, "HAR");
+            bugsSampling bugs_HAR = new bugsSampling(bnMats_HAR[0], 
+                bnMats_HAR[1], 
+                nNodes, 
+                pathway, 
+                obj_HAR.nodeNameList, 
+                "HAR",
+                nburnIn,
+                nSamplingIter,
+                gamma_prior_a,
+                gamma_prior_b);        // [0] original matrix, [1] complementary matrix
+            // -----------
 
 
             // -- MH algorithm (comment out when need to use)
-            //Adaptive_MH obj_MH = new Adaptive_MH(InputSettings, MethodSettings, OutputSettings, pathwayMats[pathway]);
-            //List<String> BNs_MH = obj_MH.StartAnalysis();
-            //string bn_MH = Find_CombinedBN(BNs_MH);
-            //List<double[,]> bnMats_MH = getNetworkSfromString(bn_MH, nNodes);
-            //printNet(bn_MH, obj_MH.nodeNameList, pathway, "MH");
+            Adaptive_MH obj_MH = new Adaptive_MH(InputSettings, MethodSettings, OutputSettings, pathwayMats[pathway]);
+            List<String> BNs_MH = obj_MH.StartAnalysis();
+            string bn_MH = Find_CombinedBN(BNs_MH);
+            List<double[,]> bnMats_MH = getNetworkSfromString(bn_MH, nNodes);
+            printNet(bn_MH, obj_MH.nodeNameList, pathway, "MH");
 
-            //bugsSampling bugs_MH = new bugsSampling(bnMats_MH[0], 
-            //    bnMats_MH[1], 
-            //    nNodes, 
-            //    pathway, 
-            //    obj_MH.nodeNameList, 
-            //    "MH", 
-            //    nburnIn, 
-            //    nSamplingIter, 
-            //    gamma_prior_a, 
-            //    gamma_prior_b);        // [0] original matrix, [1] complementary matrix
-            //// -----------
+            bugsSampling bugs_MH = new bugsSampling(bnMats_MH[0], 
+                bnMats_MH[1], 
+                nNodes, 
+                pathway, 
+                obj_MH.nodeNameList, 
+                "MH", 
+                nburnIn, 
+                nSamplingIter, 
+                gamma_prior_a, 
+                gamma_prior_b);        // [0] original matrix, [1] complementary matrix
+            // -----------
             //}
             //});
             MessageBox.Show("complete");
