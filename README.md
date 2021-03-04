@@ -17,9 +17,14 @@ Pathway Perturbation Driver identification
 - Case data: [GSE38376] Laptinib-resistant gene expression of SKBR3 Breast cancer cell-line formatted as gene-level data, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/R_GE_data_GSE38376.csv).
 - Control data: [GSE38376] Laptinib-sensitive gene expression of SKBR3 Breast cancer cell-line formatted as gene-level data, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/nR_GE_data_GSE38376.csv).
 - Pathway data: Signalling pathways collected from KEGG database, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/KEGG_45_SIGNALING.csv)
+- 
 ### DE analysis
 
 ### MCMC sampling for optimal BN structure learning for a particular STP perturbation
+
+### MCMC sampling for statistical modeling of perturbation driver characterization
+
+### Post-processing and analysis result
 
 # Structure of this repository [TBD]
 - create a logfile when running
