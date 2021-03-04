@@ -24,13 +24,12 @@ Run [```DE_GSE38376_GEO2R_code.R```](https://github.com/Akmazad/PathTurbEr/blob/
 ### Pathway Enrichment of DEGs
 Run [```Pathway_geneSetEnrichmentAnalysis.R```](https://github.com/Akmazad/PathTurbEr/blob/master/Pathway_geneSetEnrichmentAnalysis.R) for finding enrichment of the DEGs, found from previous step.
 
-### MCMC sampling for optimal BN structure learning for a particular STP perturbation
-Run [```BaseModule.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/BaseModule.cs) within a visual studio project (e.g. MCMC sampling) for generating 
+### MCMC sampling (a Visual Studio project)
+### Optimal BN structure learning for a particular STP perturbation
+Run [```BaseModule.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/BaseModule.cs) for generating optimal STP perturbation BN from Neighbourhood sampler, Hit-and-Run sampler, and Metropolis-Hasting sampler. The files will be saved within the bin\Debug\BNMCMC output\ directory of the project under the default settings.
 
-
-### MCMC sampling for statistical modeling of perturbation driver characterization
-
-### Post-processing and analysis result
+#### Statistical modeling of perturbation driver characterization
+Run [```bugsSampling.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/JAGS/bugsSampling.cs) for genetring ```alpha``` values each of the inferred BN structures. The files will be saved within the bin\Debug\JAGS_output\ directory of the project under the default settings.
 
 # Structure of this repository [TBD]
 - create a logfile when running
