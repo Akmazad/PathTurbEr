@@ -11,10 +11,16 @@ Pathway Perturbation Driver identification
 
 ## Running a demo
 ----
-- show how to run a PathTurbEr with a sample data
+### Dataset
+- Case data: [GSE38376] Laptinib-resistant gene expression of SKBR3 Breast cancer cell-line formatted as gene-level data, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/R_GE_data_GSE38376.csv).
+- Control data: [GSE38376] Laptinib-sensitive gene expression of SKBR3 Breast cancer cell-line formatted as gene-level data, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/nR_GE_data_GSE38376.csv).
+- Pathway data: Signalling pathways collected from KEGG database, [```which can be found here```](https://github.com/Akmazad/PathTurbEr/blob/master/data/KEGG_45_SIGNALING.csv)
+### DE analysis
 
-# Structure of this repository
+### MCMC sampling for optimal BN structure learning for a particular STP perturbation
+
+# Structure of this repository [TBD]
 - create a logfile when running
 - create command-line interface for MCMC sampling
 - call that from R using systems function
-- Make an R package (may be another paper)
+- Make an R package 
