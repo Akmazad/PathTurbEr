@@ -1,9 +1,10 @@
 # PathTurbEr
 Pathway Perturbation Driver identification 
 
-## Citation
+## Acknowledgement
 If you find PathTeurbEr as useful for your research, please cite our work by including the following citation:
-- Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods. Briefings in Bioinformatics [In Press]
+- <b>Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods.</b> <i>Briefings in Bioinformatics</i> [In Press]
+- Citation:
 `
 @misc{azad2020discovering,
       title={Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods}, 
