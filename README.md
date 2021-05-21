@@ -28,7 +28,7 @@ If you find PathTeurbEr as useful for your research, please cite our work by inc
 
 ## Parameter list
 - Overall parameters: bnmcmc_method (i.e. NS, HAR, MH, or, All), and more
-- BNMCMC parameters: maxParent, maxChil, nSamplingIter, nBurnIn
+- BNMCMC parameters: maxParent, maxChild, nSamplingIter, nBurnIn
 - JAGS parameters: gamma_prior_a, gamma_prior_b, nSamplingIter, nBurnIn
 
 ## Running a demo
