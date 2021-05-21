@@ -6,13 +6,17 @@ If you find PathTeurbEr as useful for your research, please cite our work by inc
 - <b>Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods.</b> <i>Briefings in Bioinformatics</i> [In Press]
 - Citation:
 ```
-@misc{azad2020discovering,
-      title={Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods}, 
-      author={AKM Azad and Salem Alyami},
-      year={2020},
-      eprint={2012.00566},
-      archivePrefix={arXiv},
-      primaryClass={q-bio.QM}
+@article{10.1093/bib/bbab137,
+    author = {Azad, A K M and Alyami, Salem A},
+    title = "{Discovering novel cancer bio-markers in acquired lapatinib resistance using Bayesian methods}",
+    journal = {Briefings in Bioinformatics},
+    year = {2021},
+    month = {04},
+    issn = {1477-4054},
+    doi = {10.1093/bib/bbab137},
+    url = {https://doi.org/10.1093/bib/bbab137},
+    note = {bbab137},
+    eprint = {https://academic.oup.com/bib/advance-article-pdf/doi/10.1093/bib/bbab137/37074977/bbab137.pdf},
 }
 ```
 
