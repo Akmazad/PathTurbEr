@@ -51,8 +51,4 @@ Run [```BaseModule.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC
 #### Statistical modeling of perturbation driver characterization
 Run [```bugsSampling.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/JAGS/bugsSampling.cs) for genetring ```alpha``` values each of the inferred BN structures. The files will be saved within the bin\Debug\JAGS_output\ directory of the project under the default settings.
 
-# Structure of this repository [TBD]
-- create a logfile when running
-- create command-line interface for MCMC sampling
-- call that from R using systems function
-- Make an R package 
+
