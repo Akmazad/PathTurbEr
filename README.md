@@ -49,6 +49,6 @@ Run [```Pathway_geneSetEnrichmentAnalysis.R```](https://github.com/Akmazad/PathT
 Run [```BaseModule.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/BaseModule.cs) for generating optimal STP perturbation BN from Neighbourhood sampler, Hit-and-Run sampler, and Metropolis-Hasting sampler. The files will be saved within the bin\Debug\BNMCMC output\ directory of the project under the default settings.
 
 #### Statistical modeling of perturbation driver characterization
-Run [```bugsSampling.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/JAGS/bugsSampling.cs) for genetring ```alpha``` values each of the inferred BN structures. The files will be saved within the bin\Debug\JAGS_output\ directory of the project under the default settings.
+Run [```bugsSampling.cs```](https://github.com/Akmazad/PathTurbEr/blob/master/MCMC%20sampling/JAGS/bugsSampling.cs) for generating ```alpha``` values each of the inferred BN structures. The files will be saved within the bin\Debug\JAGS_output\ directory of the project under the default settings.
 
 
