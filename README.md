@@ -24,7 +24,7 @@ If you find PathTeurbEr as useful for your research, please cite our work by inc
 ## Installation
 ----
 - Visual Studio 
-- JAGS: Can be downloaded from [```here```](https://sourceforge.net/projects/mcmc-jags). After installing JAGS, the binary file path (e.g. ```C:\Program Files\JAGS\JAGS-4.3.0\x64\bin```) should be used within the code to run. Moreover, the SharpJags.dll file should be added as a reference into the visual studio project.
+- JAGS: Can be downloaded from [```here```](https://sourceforge.net/projects/mcmc-jags). After installing JAGS, the binary file path (e.g. ```C:\Program Files\JAGS\JAGS-4.3.0\x64\bin```) should be used within the code to run. Moreover, the SharpJags.dll (download from here)[https://github.com/thrandre/SharpJags/releases] file should be added as a reference into the visual studio project.
 
 ## Parameter list
 - Overall parameters: bnmcmc_method (i.e. NS, HAR, MH, or, All), and more
