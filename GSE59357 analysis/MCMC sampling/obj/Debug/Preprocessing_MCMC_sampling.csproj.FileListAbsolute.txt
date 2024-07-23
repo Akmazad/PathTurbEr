@@ -1,0 +1,11 @@
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.csproj.AssemblyReference.cache
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.BaseModule.resources
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.csproj.GenerateResource.cache
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.csproj.CoreCompileInputs.cache
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\bin\Debug\Preprocessing_MCMC_sampling.exe.config
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\bin\Debug\Preprocessing_MCMC_sampling.exe
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\bin\Debug\Preprocessing_MCMC_sampling.pdb
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\bin\Debug\SharpJags.dll
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preproce.DBFE5A74.Up2Date
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.exe
+C:\Users\Hp\OneDrive - Imam university\Documents\Az projects\PathTurbEr\GSE59357 analysis\MCMC sampling\obj\Debug\Preprocessing_MCMC_sampling.pdb

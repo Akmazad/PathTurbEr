@@ -1,0 +1,19 @@
+
+                model {
+                        for (i in 1:N) {
+                            for (j in 1:N) {
+
+                                y00a[i,j] ~ dbern(p00a[i,j])
+                                log(p00a[i,j]) <- lambdaa[i,j]
+                                y11a[i,j] ~ dbern(p11a[i,j])
+                                log(p11a[i,j]) <- lambdaa[i,j] + thetaa + a[i] + a[j]
+                                lambdaa[i,j] <- -log(1 + exp(thetaa + a[i] + a[j]))
+
+                            }
+                        }
+
+                    for (i in 1:N) { a[i] ~ dnorm(0,tau.thetaa) }
+                    thetaa ~ dnorm(0,tau.thetaa)
+                    tau.thetaa ~ dgamma(0.1,0.1)
+                }
+            
